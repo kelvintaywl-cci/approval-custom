@@ -20,4 +20,4 @@ workflows:
           type: approval
       - build:
           requires:
-            - hold
+            - Testing << pipeline.parameters.title >>
