@@ -1,0 +1,23 @@
+version: 2.1
+
+parameters:
+  title:
+    type: string
+    default: test
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - run: echo "helllo"
+
+workflows:
+  main:
+    jobs:
+      - hold:
+          name: Testing << pipeline.parameters.title >>
+          type: approval
+      - build:
+          requires:
+            - hold
